@@ -1,0 +1,36 @@
+<% layout('/layouts/boilerplate') -%>
+<body>
+    <h3>All Listings</h3>
+    <!-- <form action="/listings/new" method="get">
+        <button>Create New Listing</button>
+    </form> -->
+
+    <div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1">
+        <% for(let listing of allListings){ %>
+            <a href="/listings/<%= listing.id %>" class="listing-link">
+                <div class="card col">
+                    <!-- <img src="<%= listing.image.url %>" class="card-img-top" alt="listing_image"> -->
+                    <!-- If some listings still don't have image.url -->
+                    <% if (listing.image && listing.image.url) { %>
+                        <img src="<%- listing.image.url %>" class="card-img-top" alt="listing image" style="height: 20rem;">
+                      <% } else { %>
+                        <img src="https://www.shutterstock.com/image-vector/default-ui-image-placeholder-wireframes-600nw-1037719192.jpg" class="card-img-top" alt="default image" style="height: 20rem;">
+                      <% } %>
+                      <div class="card-img-overlay"></div>
+                    <div class="card-body">
+                      <p class="card-text">
+                        <b><%= listing.title %> <br></b>
+                        &#8377; <%= listing.price.toLocaleString("en-IN") %> / Night
+                      </p>
+                    </div>
+                  </div>
+            </a>
+              <% } %>
+    </div>
+
+    <!-- <ul>
+        <% for(let listing of allListings){ %>
+            <li><a href="/listings/<%= listing.id %>"><%= listing.title %></a></li>
+        <% } %>
+    </ul> -->
+</body>
